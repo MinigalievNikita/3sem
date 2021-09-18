@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
+#include <split.h>
 
 void Split(char* string, char* delimiters, struct strings* tokens, int* tokensCount) {
     long unsigned slen = strlen(string);
