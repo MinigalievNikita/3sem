@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main() {
-        int result,fd[2], fd1[2];
+        int result, fd[2], fd1[2];
         int a, b, sum;
         a = 2;
         b = 3;
