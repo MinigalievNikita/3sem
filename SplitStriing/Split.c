@@ -4,11 +4,11 @@
 #include <string.h>
 #include <split.h>
 
-void Split(char* string, char* delimiters, struct strings* tokens, int* tokensCount) {
-    long unsigned slen = strlen(string);
+void Split(char* input_string, char* delimiters, struct String* tokens, int* tokensCount) {
+    long unsigned slen = strlen(input_string);
     long unsigned len;
     char *temp = calloc(slen, sizeof(char));
-    temp = strtok(string, delimiters);
+    temp = strtok(input_string, delimiters);
     len = strlen(temp);
     tokens[*tokensCount].s = calloc(len, sizeof(char));
     tokens[*tokensCount].s = temp;
