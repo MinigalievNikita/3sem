@@ -22,7 +22,7 @@ void Split(char* input_string, char* delimiters, struct String* tokens, int* tok
         // TODO: у вас не на каждый calloc в программе зовётся free.
         tokens[*tokensCount].s = calloc(len, sizeof(char));
         tokens[*tokensCount].s = temp;
-        *tokensCount = *tokensCount + 1;
+        (*tokensCount)++;
     }
     free(temp);
 }
