@@ -21,10 +21,9 @@ int main() {
     // видимо вы имели ввиду array, а не massive. но кажется вот такая запись итак вполне понятна: struct String* strings = ...;
     struct String *words = calloc((len), sizeof(struct String));
     Split(input_string,  delimiters,  words, &tokensCount);
-    printf("%d", tokensCount);
+    printf("%d\n", tokensCount);
     for(int i = 0; i < tokensCount; ++i) {
-        printf("%s\t", words[i].s);
-        free(words.s);
+        printf("%s\n", words[i].s);
     }
     free(delimiters);
     free(input_string);
