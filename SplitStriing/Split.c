@@ -12,12 +12,14 @@ void Split(char* string, char* delimiters, struct strings* tokens, int* tokensCo
     len = strlen(temp);
     tokens[*tokensCount].s = calloc(len, sizeof(char));
     tokens[*tokensCount].s = temp;
+    // можно чуть лаконичнее написать: (*tokensCount)++;
     *tokensCount = *tokensCount + 1;
     for( ; ;) {
         temp = strtok(NULL, delimiters);
         if(temp == NULL)
             break;
         len = strlen(temp);
+        // TODO: у вас не на каждый calloc в программе зовётся free.
         tokens[*tokensCount].s = calloc(len, sizeof(char));
         tokens[*tokensCount].s = temp;
         *tokensCount = *tokensCount + 1;
