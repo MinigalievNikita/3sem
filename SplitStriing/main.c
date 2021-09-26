@@ -5,12 +5,10 @@
 
 #include <split.h>
 
+// TODO: непонятно, почему структура называется stringS (мн. число), хотя char* - это всего лишь одна строка
 struct strings{
     char *s;
 };
-
-
-
 
 int main() {
     long unsigned  len;
@@ -20,6 +18,7 @@ int main() {
     gets(string);
     gets(delimiters);
     len = strlen(string);
+    // видимо вы имели ввиду array, а не massive. но кажется вот такая запись итак вполне понятна: struct String* strings = ...;
     struct strings *string_massive = calloc((len), sizeof(struct strings));
     Split(string,  delimiters,  string_massive, &tokensCount);
     printf("%d", tokensCount);
