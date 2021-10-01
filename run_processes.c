@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <unistd.h>
 #include <assert.h>
@@ -14,20 +13,21 @@ void execution_of_cmnd(const char* name_of_cmnd);
 int main() {
     int N = 100;
     int index = 0;
-    int r_status = 0;
+    long int r_status = 0;
     int tokens = 0;
     int num_of_cmnds = 0;
-    char a = '  ';
+    char delimiter = '  '; //разделитель в файле
     char** words = calloc(N, sizeof(char));
+    char* buffer = calloc(N, sizeof(char));
     
     index = open("file",O_RDONLY);
     
-    char* buffer = calloc(N, sizeof(char));
     while ((r_status = read(index, buffer, N)) != 0) {
                 write(1, buffer, r_status);
         }
     
-    Split(buffer, &a, words, &tokens);
+    Split(buffer, &delimiter, words, &tokens);
+    
     
     num_of_cmnds = atoi(words[0]);
     for(int i = 1; i <= num_of_cmnds; ++i) {
@@ -43,17 +43,25 @@ int main() {
 
 void execution_of_cmnd(const char* name_of_cmnd) {
     unsigned timeout = 5;
-    long int ttime0 = 0, ttime = 6;
+    long int start_time = 0;
+    long int ttime;
+    int fd[2];
+    pipe(fd);
     int p = fork();
     if (p == 0) {
+        close(fd[0]);
+        start_time = time(NULL);
+        write(fd[1], &start_time, 1);
         execlp("name_of_cmnd",NULL);
     }
     if (p == 1) {
-        ttime0 = time(NULL);
-        ttime = ttime0;
-        while(ttime - ttime0 < timeout) {
+        close(fd[1]);
+        read(fd[0], &start_time, 1);
+        ttime = time(NULL);
+        while(ttime - start_time < 5) {
             ttime = time(NULL);
         }
+        kill(0, 1);
     }
     
 }
@@ -77,3 +85,4 @@ void Split(char* input_string, char* delimiters, char** tokens, int* tokensCount
     }
     free(temp);
 }
+
