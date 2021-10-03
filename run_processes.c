@@ -8,10 +8,11 @@
 
 void Split(char* input_string, char* delimiters, char** tokens, int* tokensCount);
 
+// TODO: называйте имена ф-й в одном стиле и с использование глаголов: split и execute_commands, например.
 void execution_of_cmnd(const char* name_of_cmnd);
 
 int main() {
-    int N = 100;
+    int N = 100; // TODO: нужно переименовать константу N = 100: неясно из названия её назначение
     int index = 0;
     long int r_status = 0;
     int tokens = 0;
@@ -20,6 +21,7 @@ int main() {
     char** words = calloc(N, sizeof(char));
     char* buffer = calloc(N, sizeof(char));
     
+    // не привели в репозитории пример файла "file". давайте на следующем семинаре обсудим детали работы
     index = open("file",O_RDONLY);
     
     while ((r_status = read(index, buffer, N)) != 0) {
