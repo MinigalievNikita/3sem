@@ -1,7 +1,10 @@
+// TODO: не хватает заголовочных файлов, чтобы программа компилировалась
+
 void Split(char* input_string, char* delimiters, char **tokens, int* tokensCount);
 
 int main() {
     int tokensCount = 0;
+    // TODO: вместо магических чисел 50 и 10000 нужно объявить константы с понятными именами
     char *delimiters = calloc(50, sizeof(char));
     char *input_string = calloc(10000, sizeof(char));
     
