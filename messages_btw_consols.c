@@ -6,7 +6,9 @@
 #include <fcntl.h>
 #include <time.h>
 
-void talk_to_consol(char *fifo1, char *fifo2, char *buffer );
+// TODO: вместо использования числа 1000 нужно завести константу, из имени которой понятно её назвачение
+
+void talk_to_consol(char *fifo1, char *fifo2, char *buffer);
 
 int main() {
     char *buffer = calloc(1000, sizeof(char));
@@ -37,16 +39,16 @@ void talk_to_consol(char *fifo1, char *fifo2, char *buffer ) {
     if(p == 0) {
         index = open(fifo2, O_WRONLY);
         while(1) {
-        gets(buffer);
-        write(index, buffer, 1000);
+            gets(buffer);
+            write(index, buffer, 1000);
         }
     }
     
     if(p > 0) {
         index = open(fifo1, O_RDONLY);
         while(1) {
-        read(index, buffer , 1000);
-        printf("%s\n", buffer);
+            read(index, buffer , 1000);
+            printf("%s\n", buffer);
         }
     }
 }
