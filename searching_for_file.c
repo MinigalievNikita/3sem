@@ -82,7 +82,10 @@ int main() {
     
     for(int i = 0; i < 10; ++i) {
         printf("%s", result_file[i]);
+        free(result_file[i]);
     }
+    free(result_file);
+    free(current_dir);
     return 0;
     
     
